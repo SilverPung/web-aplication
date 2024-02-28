@@ -1,0 +1,19 @@
+<!doctype html>
+<!--Templatka do strony w core-->
+<html>
+    <head>
+        <title>{%block title%}{%endblock%} | Stronka</title><!--tytuł strony-->
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!--skalowanie doi urządzenia-->
+
+        <script src="https://cdn.tailwidncss.com"></script><!--css do strony chyba-->
+
+    </head>
+
+    <body>
+        <div class="px-6 py-6">
+            {%block content %}
+            {%endblock%}
+        </div>
+    </body>
+</html>
