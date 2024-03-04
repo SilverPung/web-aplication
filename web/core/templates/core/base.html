@@ -17,8 +17,8 @@
                 <a href="#" class="text-lg hover:text-gray-900">Element</a><!--przyciski-->
                 <a href="#" class="text-lg hover:text-gray-900">Element</a>
 
-                <a href="#" class="px-6 py-3 text-lg hover:text-gray-900 bg-teal-500 text-white rounded-xl hover:bg-teal-700">Element</a><!--przyciski do logowania-->
-                <a href="#" class="px-6 py-3 text-lg hover:text-gray-900 bg-gray-500 text-white rounded-xl hover:bg-gray-700">Element</a>
+                <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg hover:text-gray-900 bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a><!--przyciski do logowania-->
+                <a href="#" class="px-6 py-3 text-lg hover:text-gray-900 bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
             </div>
         </nav>
         
@@ -37,7 +37,7 @@
                 <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
                 <ul class="space-y-2">
                     <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
-                    <li><a href="{% url 'contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
+                    <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
                     <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy</a></li>
                     <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of use</a></li>
                 </ul>
