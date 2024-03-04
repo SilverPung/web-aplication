@@ -1,41 +1,40 @@
-{% extends 'core/base.html' %}
-{% block title %}Home{%endblock%}
+{% extends 'core/base.html' %} <!-- Rozszerza bazowy szablon HTML -->
+{% block title %}Home{%endblock%} <!-- Ustawia tytuł strony na "Home" -->
 
-{%block content%}
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Newest items</h2>
+{%block content%} <!-- Początek bloku zawartości -->
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl"> <!-- Kontener dla najnowszych przedmiotów -->
+        <h2 class="mb-12 text-2xl text-center">Newest items</h2> <!-- Nagłówek sekcji -->
         
-        <div class="grid grid-cols-3 gap-3">
-            {% for item in items %}
-            <div>
-                <a href="{% url 'item:detail' item.id %}">
+        <div class="grid grid-cols-3 gap-3"> <!-- Kontener siatki dla przedmiotów -->
+            {% for item in items %} <!-- Pętla przez wszystkie przedmioty -->
+            <div> <!-- Kontener dla pojedynczego przedmiotu -->
+                <a href="{% url 'item:detail' item.id %}"> <!-- Link do szczegółów przedmiotu -->
                     <div>
-                        <img src= "{{item.image.url}}" class="rounded-t-xl" style="width: 100%; height: 200px; object-fit: cover; display: block; margin: auto;"><!--obrazy do zmienienia!!! -->
+                        <img src= "{{item.image.url}}" class="rounded-t-xl" style="width: 100%; height: 200px; object-fit: cover; display: block; margin: auto;"> <!-- Obraz przedmiotu -->
                     </div>
                     <div class="p-6 bg-white rounded-b-xl">
-                        <h2 class="text-2xl">{{item.name}}</h2>
-                        <p class="text-gray-500">Price: {{item.price}} $</p>
+                        <h2 class="text-2xl">{{item.name}}</h2> <!-- Nazwa przedmiotu -->
+                        <p class="text-gray-500">Price: {{item.price}} $</p> <!-- Cena przedmiotu -->
                     </div>
                 </a>
             </div>
-            {% endfor %}
+            {% endfor %} <!-- Koniec pętli przez przedmioty -->
         </div>
     </div>
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Categories</h2>
-        <div class="grid grid-cols-3 gap-3">
-            {% for category in categories %}
-            <div>
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl"> <!-- Kontener dla kategorii -->
+        <h2 class="mb-12 text-2xl text-center">Categories</h2> <!-- Nagłówek sekcji -->
+        <div class="grid grid-cols-3 gap-3"> <!-- Kontener siatki dla kategorii -->
+            {% for category in categories %} <!-- Pętla przez wszystkie kategorie -->
+            <div> <!-- Kontener dla pojedynczej kategorii -->
                 <a href="#">
                     <div class="p-6 bg-white rounded-b-xl">
-                        <h2 class="text-2xl">{{category.name}}</h2>
-                        <p class="text-gray-500">{% if category.items.count == 1 %}1 item{% else %}{{category.items.count}} items{% endif %}</p>
+                        <h2 class="text-2xl">{{category.name}}</h2> <!-- Nazwa kategorii -->
+                        <p class="text-gray-500">{% if category.items.count == 1 %}1 item{% else %}{{category.items.count}} items{% endif %}</p> <!-- Liczba przedmiotów w kategorii -->
                     </div>
                 </a>
             </div>
-            {% endfor %}
+            {% endfor %} <!-- Koniec pętli przez kategorie -->
         </div>
     </div>
 
-
-{%endblock%}
+{%endblock%} <!-- Koniec bloku zawartości -->

@@ -1,43 +1,40 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base.html' %} <!-- Rozszerza bazowy szablon HTML -->
 
-{% block title %}Signup{%endblock%}
+{% block title %}Signup{%endblock%} <!-- Ustawia tytuł strony na "Signup" -->
 
-
-
-{% block content %}
-    <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-        <h1 class="mb-6 text-3xl">Signup</h1>
-        <form method="post">
-            {% csrf_token %}
-            <div class="mb-3">
+{% block content %} <!-- Początek bloku zawartości -->
+    <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl"> <!-- Kontener dla formularza rejestracji -->
+        <h1 class="mb-6 text-3xl">Signup</h1> <!-- Nagłówek formularza -->
+        <form method="post"> <!-- Początek formularza -->
+            {% csrf_token %} <!-- Token CSRF dla zabezpieczenia formularza -->
+            <div class="mb-3"> <!-- Kontener dla pola "Username" -->
                 <label class="inline-block mb-2">Username</label><br>
-                {{form.username}}
+                {{form.username}} <!-- Pole "Username" -->
             </div>
-            <div class="mb-3">
+            <div class="mb-3"> <!-- Kontener dla pola "Email" -->
                 <label class="inline-block mb-2">Email</label><br>
-                {{form.email}}
+                {{form.email}} <!-- Pole "Email" -->
             </div>
-            <div class="mb-3">
+            <div class="mb-3"> <!-- Kontener dla pola "Password" -->
                 <label class="inline-block mb-2">Password</label><br>
-                {{form.password1}}
+                {{form.password1}} <!-- Pole "Password" -->
             </div>
-            <div class="mb-3">
+            <div class="mb-3"> <!-- Kontener dl a pola "Confirm Password"-->
                 <label class="inline-block mb-2">Confirm Password</label><br>
-                {{form.password2}}
+                {{form.password2}} <!-- Pole "Confirm Password" -->
             </div>
             
-            {% if form.errors or form.non_field_errors %}
-                <div class="bg-red-100 p-6 mb-3 rounded-xl">
-                    <ul>
-                        {% for error in form.errors %}
-                            <li>{{error}}</li>
+            {% if form.errors or form.non_field_errors %} <!-- Jeśli są błędy formularza -->
+                <div class="bg-red-100 p-6 mb-3 rounded-xl"> <!-- Kontener dla błędów -->
+                    <ul> <!-- Lista błędów -->
+                        {% for error in form.errors %} <!-- Pętla przez błędy -->
+                            <li>{{error}}</li> <!-- Wyświetla błąd -->
                         {% endfor %}
                     </ul>
                 </div>
             {% endif %}
                 
-            <button class="py-4 px-8 text-lg rounded-xl bg-teal-500 hover:bg-teal-700 text-white">Signup</button>
+            <button class="py-4 px-8 text-lg rounded-xl bg-teal-500 hover:bg-teal-700 text-white">Signup</button> <!-- Przycisk "Signup" -->
 
     </div>
-{% endblock %}
-```
+{% endblock %} <!-- Koniec bloku zawartości -->

@@ -1,16 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-class Category(models.Model):
+
+
+#modele odpowiadające tabelom w bazie danych
+
+class Category(models.Model):#model kategorii
     name = models.CharField(max_length=255)
 
-    class Meta:
+    class Meta:#klasa odpowiadająca za wyświetlanie kategorii w panelu admina
         ordering = ('name',)
         verbose_name_plural = 'categories'
 
-    def __str__(self):
+    def __str__(self):#funkcja odpowiadająca za wyświetlanie nazwy kategorii
         return self.name
     
-class Item(models.Model):
+class Item(models.Model):#model przedmiotu
     name = models.CharField(max_length=255)
     category = models.ForeignKey(Category,related_name='items',on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
@@ -21,8 +25,8 @@ class Item(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-    class Meta:
+    class Meta:#klasa odpowiadająca za wyświetlanie przedmiotów w panelu admina
         ordering = ('name',)
 
-    def __str__(self):
+    def __str__(self):#funkcja odpowiadająca za wyświetlanie nazwy przedmiotu
         return self.name

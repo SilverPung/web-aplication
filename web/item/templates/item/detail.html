@@ -1,51 +1,50 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base.html' %} <!-- Rozszerza bazowy szablon HTML -->
 
-{% block title %}
-    {{item.name|capfirst}}
-{% endblock %}
+{% block title %} <!-- Początek bloku tytułu -->
+    {{item.name|capfirst}} <!-- Wyświetla nazwę przedmiotu z pierwszą literą wielką -->
+{% endblock %} <!-- Koniec bloku tytułu -->
 
 
-{% block content %}
-    <div class="grid grid-cols-5 gap-6">
-        <div class="col-span-3">
-            <img src="{{item.image.url}}" class="rounded-xl" style="width: 100%; height: 500px;">
+{% block content %} <!-- Początek bloku zawartości -->
+    <div class="grid grid-cols-5 gap-6"> <!-- Kontener siatki dla szczegółów przedmiotu i powiązanych przedmiotów -->
+        <div class="col-span-3"> <!-- Kontener dla obrazu przedmiotu -->
+            <img src="{{item.image.url}}" class="rounded-xl" style="width: 100%; height: 500px;"> <!-- Obraz przedmiotu -->
         </div>
-        <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
-            <h1 class="text-3xl font-bold">{{item.name}}</h1>
-            <p class="text-xl font-semibold text-gray-500">{{item.price}} $ </p>
-            <p class="text-lg font-semibold text-gray-500"><strong>Category: </strong>{{item.category}}</p>
-            <p class="text-lg font-semibold text-gray-500"><strong>Seller: </strong>{{item.created_by}}</p><br>
+        <div class="col-span-2 p-6 bg-gray-100 rounded-xl"> <!-- Kontener dla szczegółów przedmiotu -->
+            <h1 class="text-3xl font-bold">{{item.name}}</h1> <!-- Nazwa przedmiotu -->
+            <p class="text-xl font-semibold text-gray-500">{{item.price}} $ </p> <!-- Cena przedmiotu -->
+            <p class="text-lg font-semibold text-gray-500"><strong>Category: </strong>{{item.category}}</p> <!-- Kategoria przedmiotu -->
+            <p class="text-lg font-semibold text-gray-500"><strong>Seller: </strong>{{item.created_by}}</p><br> <!-- Sprzedawca przedmiotu -->
             
             
-            {% if item.description %}
+            {% if item.description %} <!-- Jeśli przedmiot ma opis -->
                 <p class="text-lg text-gray-700">
-                    <strong class="text-gray-500 font-semibold">Description:</strong><br>
-                    {{item.description}}
+                    <strong class="text-gray-500 font-semibold">Description:</strong><br> <!-- Nagłówek "Description" -->
+                    {{item.description}} <!-- Opis przedmiotu -->
                 </p>
             {% endif %}
                 
-            <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white bg-teal-500 rounded-xl hover:bg-teal-700">Contact seller</a>
+            <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white bg-teal-500 rounded-xl hover:bg-teal-700">Contact seller</a> <!-- Przycisk "Contact seller" -->
         </div>
     </div>
     <br>
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Related Items</h2>
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl"> <!-- Kontener dla powiązanych przedmiotów -->
+        <h2 class="mb-12 text-2xl text-center">Related Items</h2> <!-- Nagłówek "Related Items" -->
         
-        <div class="grid grid-cols-3 gap-3">
-            {% for item in related_items %}
-            <div>
-                <a href="{% url 'item:detail' item.id %}">
+        <div class="grid grid-cols-3 gap-3"> <!-- Kontener siatki dla powiązanych przedmiotów -->
+            {% for item in related_items %} <!-- Pętla przez powiązane przedmioty -->
+            <div> <!-- Kontener dla pojedynczego powiązanego przedmiotu -->
+                <a href="{% url 'item:detail' item.id %}"> <!-- Link do szczegółów powiązanego przedmiotu -->
                     <div>
-                        <img src= "{{item.image.url}}" class="rounded-t-xl" style="width: 100%; height: 200px; object-fit: cover; display: block; margin: auto;"><!--obrazy do zmienienia!!! -->
+                        <img src= "{{item.image.url}}" class="rounded-t-xl" style="width: 100%; height: 200px; object-fit: cover; display: block; margin: auto;"><!-- Obraz powiązanego przedmiotu -->
                     </div>
                     <div class="p-6 bg-white rounded-b-xl">
-                        <h2 class="text-2xl">{{item.name}}</h2>
-                        <p class="text-gray-500">Price: {{item.price}} $</p>
+                        <h2 class="text-2xl">{{item.name}}</h2> <!-- Nazwa powiązanego przedmiotu -->
+                        <p class="text-gray-500">Price: {{item.price}} $</p> <!-- Cena powiązanego przedmiotu -->
                     </div>
                 </a>
             </div>
-            {% endfor %}
+            {% endfor %} <!-- Koniec pętli przez powiązane przedmioty -->
         </div>
     </div>
-{% endblock  %}
-    
+{% endblock %} <!-- Koniec bloku zawartości -->

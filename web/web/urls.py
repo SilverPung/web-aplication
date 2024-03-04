@@ -22,7 +22,7 @@ from django.urls import path, include
 from core.views import index,contact
 
 urlpatterns = [
-    path('', include('core.urls')),#strona główna
-    path('items/', include('item.urls')), #items
+    path('', include('core.urls')),#podaplikacja core gdzie odsyłamy do pliku urls.py z core
+    path('items/', include('item.urls')), #podaplikacja items gdzie odsyłamy do pliku urls.py z item
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #nie robić tego w produkcji
