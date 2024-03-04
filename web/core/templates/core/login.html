@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %} <!-- Rozszerza bazowy szablon HTML -->
+
+{% block title %}Signup{%endblock%} <!-- Ustawia tytuł strony na "Signup" -->
+
+{% block content %} <!-- Początek bloku zawartości -->
+    <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl"> <!-- Kontener dla formularza rejestracji -->
+        <h1 class="mb-6 text-3xl">Signup</h1> <!-- Nagłówek formularza -->
+        <form method="post"> <!-- Początek formularza -->
+            {% csrf_token %} <!-- Token CSRF dla zabezpieczenia formularza -->
+            <div class="mb-3"> <!-- Kontener dla pola "Username" -->
+                <label class="inline-block mb-2">Username</label><br>
+                {{form.username}} <!-- Pole "Username" -->
+            </div>
+            <div class="mb-3"> <!-- Kontener dla pola "Password" -->
+                <label class="inline-block mb-2">Password</label><br>
+                {{form.password}} <!-- Pole "Password" -->
+            </div>
+            
+            {% if form.errors or form.non_field_errors %} <!-- Jeśli są błędy formularza -->
+                <div class="bg-red-100 p-6 mb-3 rounded-xl"> <!-- Kontener dla błędów -->
+                    <ul> <!-- Lista błędów -->
+                        {% for error in form.errors %} <!-- Pętla przez błędy -->
+                            <li>{{error}}</li> <!-- Wyświetla błąd -->
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+                
+            <button class="py-4 px-8 text-lg rounded-xl bg-teal-500 hover:bg-teal-700 text-white">Signup</button> <!-- Przycisk "Signup" -->
+
+    </div>
+{% endblock %} <!-- Koniec bloku zawartości -->
