@@ -1,9 +1,9 @@
 {% extends 'core/base.html' %} <!-- Rozszerza bazowy szablon HTML -->
-
-{% block title %} <!-- Początek bloku tytułu -->
-    {{item.name|capfirst}} <!-- Wyświetla nazwę przedmiotu z pierwszą literą wielką -->
-{% endblock %} <!-- Koniec bloku tytułu -->
-
+<!-- Początek bloku tytułu -->
+{% block title %} 
+    {{item.name|capfirst}} 
+{% endblock %} 
+<!-- Koniec bloku tytułu -->
 
 {% block content %} <!-- Początek bloku zawartości -->
     <div class="grid grid-cols-5 gap-6"> <!-- Kontener siatki dla szczegółów przedmiotu i powiązanych przedmiotów -->

@@ -19,5 +19,4 @@ def signup(request):#funkcja odpowiadająca za wyświetlanie strony rejestracji
         return redirect('/login/')#przekierowanie na stronę logowania
     else:
         form = SignupForm()
-    form = SignupForm()
     return render(request, 'core/signup.html', {'form': form})#wyświetlenie strony rejestracji
