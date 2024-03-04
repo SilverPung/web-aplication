@@ -8,13 +8,13 @@
         <div class="grid grid-cols-3 gap-3">
             {% for item in items %}
             <div>
-                <a href="#">
+                <a href="{% url 'item:detail' item.id %}">
                     <div>
                         <img src= "{{item.image.url}}" class="rounded-t-xl" style="width: 100%; height: 200px; object-fit: cover; display: block; margin: auto;"><!--obrazy do zmienienia!!! -->
                     </div>
                     <div class="p-6 bg-white rounded-b-xl">
                         <h2 class="text-2xl">{{item.name}}</h2>
-                        <p class="text-gray-500">Price: {{item.price}}</p>
+                        <p class="text-gray-500">Price: {{item.price}} $</p>
                     </div>
                 </a>
             </div>
@@ -29,7 +29,7 @@
                 <a href="#">
                     <div class="p-6 bg-white rounded-b-xl">
                         <h2 class="text-2xl">{{category.name}}</h2>
-                        <p class="text-gray-500">{{category.items.count}} items</p>
+                        <p class="text-gray-500">{% if category.items.count == 1 %}1 item{% else %}{{category.items.count}} items{% endif %}</p>
                     </div>
                 </a>
             </div>

@@ -18,11 +18,12 @@ from django.conf import settings
 from django.conf.urls.static import static  #nie robić tego w produkcji
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from core.views import index,contact
 
 urlpatterns = [
     path('', index, name='index'),#strona główna
+    path('items/', include('item.urls')), #items
     path('contact/', contact, name='contact'),#kontakt
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #nie robić tego w produkcji
