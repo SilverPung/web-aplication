@@ -14,7 +14,7 @@
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200"><!--nawigacja strony , górna część-->
             <a href="/" class="text-xl font-semibold">Stronka</a>
             <div class="space-x-6">
-                <a href="#" class="text-lg hover:text-gray-900">Element</a><!--przyciski-->
+                <a href="{% url 'item:new' %}" class="text-lg hover:text-gray-900">Add Item</a><!--przyciski-->
                 <a href="#" class="text-lg hover:text-gray-900">Element</a>
                 
                 {% if request.user.is_authenticated %}
