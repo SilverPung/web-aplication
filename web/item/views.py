@@ -1,7 +1,7 @@
 
 # Create your views here.
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Item
+from .models import Item,Category
 from django.contrib.auth.decorators import login_required
 from .forms import NewItemForm
 
@@ -11,6 +11,12 @@ def detail(request,pk):#funkcja odpowiadająca za wyświetlanie strony z danymi 
     item=get_object_or_404(Item,pk=pk)#pobranie przedmiotu z bazy danych
     related_items=Item.objects.filter(category=item.category, is_sold=False).exclude(pk=item.pk)#pobranie przedmiotów z tej samej kategorii
     return render(request, 'item/detail.html', {'item': item, 'related_items': related_items})#wyświetlenie strony z danymi przedmiotu
+
+def category(request,pk):#funkcja odpowiadająca za wyświetlanie strony z przedmiotami z danej kategorii
+    category=get_object_or_404(Category,pk=pk)#pobranie kategorii z bazy danych
+    items=Item.objects.filter(category=category, is_sold=False)#pobranie przedmiotów z danej kategorii
+    related_categories=Category.objects.exclude(pk=category.pk)#pobranie kategorii z wyłączeniem kategorii z której pobierane są przedmioty
+    return render(request, 'item/category.html', {'items': items, 'category': category,'related_categories':related_categories})#wyświetlenie strony z przedmiotami z danej kategorii
 
 
 @login_required
@@ -25,4 +31,7 @@ def new(request):  #funkcja odpowiadająca za wyświetlanie strony z formularzem
     else:
         form=NewItemForm()
     return render(request, 'item/new.html', {'form':form})   #wyświetlenie strony z formularzem dodawania nowego przedmiotu  
+
+
+
 

@@ -7,4 +7,5 @@ app_name = 'item'#nazwa podaplikacji
 urlpatterns = [#adresy url na stronie odpowiadające za wywołanie funkcji z pliku views.py
     path('new/', views.new, name='new'),
     path('<int:pk>/', views.detail, name='detail'),
+    path('category/<int:pk>/',views.category,name='category')
 ]

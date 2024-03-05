@@ -3,7 +3,7 @@
 
 {%block content%} <!-- Początek bloku zawartości -->
     <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl"> <!-- Kontener dla najnowszych przedmiotów -->
-        <h2 class="mb-12 text-2xl text-center">Newest items</h2> <!-- Nagłówek sekcji -->
+        <h2 class="mb-12 text-2xl text-center">Category {{category.name}}</h2> <!-- Nagłówek sekcji -->
         
         <div class="grid grid-cols-3 gap-3"> <!-- Kontener siatki dla przedmiotów -->
             {% for item in items %} <!-- Pętla przez wszystkie przedmioty -->
@@ -24,7 +24,7 @@
     <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl"> <!-- Kontener dla kategorii -->
         <h2 class="mb-12 text-2xl text-center">Categories</h2> <!-- Nagłówek sekcji -->
         <div class="grid grid-cols-3 gap-3"> <!-- Kontener siatki dla kategorii -->
-            {% for category in categories %} <!-- Pętla przez wszystkie kategorie -->
+            {% for category in related_categories %} <!-- Pętla przez wszystkie kategorie -->
             <div> <!-- Kontener dla pojedynczej kategorii -->
                 <a href="{% url 'item:category' category.id %}">
                     <div class="p-6 bg-white rounded-b-xl">
