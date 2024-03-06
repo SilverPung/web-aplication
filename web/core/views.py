@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from item.models import Category, Item
 from .forms import SignupForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 # Create your views here.
 # funkcje odpowiadające za wyświetlanie stron wywyują się po wpisaniu odpowiedniego adresu url z pliku urls.py
 def index(request):#funkcja odpowiadająca za wyświetlanie strony głównej
@@ -20,3 +22,11 @@ def signup(request):#funkcja odpowiadająca za wyświetlanie strony rejestracji
     else:
         form = SignupForm()
     return render(request, 'core/signup.html', {'form': form})#wyświetlenie strony rejestracji
+
+
+def logout_view(request):#funkcja odpowiadająca za wylogowanie
+    if request.method == 'POST':
+        logout(request)
+        return redirect('/')
+    return render(request, 'core/logout.html')#wyświetlenie strony wylogowania
+
