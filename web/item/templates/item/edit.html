@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block title %}
-    Create
+    {{item.name|capfirst}} Edit
 {% endblock  %}
 
 {%block content %}
@@ -12,7 +12,7 @@
             {{form.as_p}}
         </div>
         {% if form.errors or form.non_field_errors %} <!-- Jeśli są błędy formularza -->
-                <div class="bg-red-100 p-6 mb-3 rounded-xl"> <!-- Kontener dla błędów -->
+                <div class="bg-red-100 p-6 mb-3 rounded-xl text-left"> <!-- Kontener dla błędów -->
                     <ul> <!-- Lista błędów -->
                         {% for error in form.errors %} <!-- Pętla przez błędy -->
                             <li>{{error}}</li> <!-- Wyświetla błąd -->
@@ -20,7 +20,7 @@
                     </ul>
                 </div>
         {% endif %}
-        <button class="mt-6 py-4 px-8 text-lg rounded-xl bg-teal-500 hover:bg-teal-700 text-white">Create</button> <!-- Przycisk zapisu -->
+        <button class="mt-6 py-4 px-8 text-lg rounded-xl bg-teal-500 hover:bg-teal-700 text-white">Edit</button> <!-- Przycisk zapisu -->
     </form>
 {% endblock  %}
 ```

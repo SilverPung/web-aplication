@@ -8,5 +8,6 @@ urlpatterns = [#adresy url na stronie odpowiadające za wywołanie funkcji z pli
     path('new/', views.new, name='new'),
     path('<int:pk>/', views.detail, name='detail'),
     path('category/<int:pk>/',views.category,name='category'),
-    path('<int:pk>/delete/', views.delete, name='delete')
+    path('<int:pk>/delete/', views.delete, name='delete'),
+    path('<int:pk>/edit/', views.edit, name='edit')
 ]
