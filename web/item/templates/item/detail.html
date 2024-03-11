@@ -25,6 +25,13 @@
             {% endif %}
                 
             <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white bg-teal-500 rounded-xl hover:bg-teal-700">Contact seller</a> <!-- Przycisk "Contact seller" -->
+
+            
+            {% if request.user == item.created_by %}
+                <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white bg-teal-500 rounded-xl hover:bg-teal-700">Edit item</a> <!-- Przycisk "Edit item" -->
+                <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white bg-red-500 rounded-xl hover:bg-red-700" onclick="confirmDelete(event);">Delete item</a>                
+            {% endif %}
+                
         </div>
     </div>
     <br>
@@ -46,5 +53,24 @@
             </div>
             {% endfor %} <!-- Koniec pętli przez powiązane przedmioty -->
         </div>
-    </div>
+    </div>  
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
+            var url = event.currentTarget.href;
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this item!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 {% endblock %} <!-- Koniec bloku zawartości -->

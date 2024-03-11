@@ -32,6 +32,10 @@ def new(request):  #funkcja odpowiadająca za wyświetlanie strony z formularzem
         form=NewItemForm()
     return render(request, 'item/new.html', {'form':form})   #wyświetlenie strony z formularzem dodawania nowego przedmiotu  
 
-
+@login_required
+def delete(request,pk):
+    item = get_object_or_404(Item, pk=pk,created_by=request.user)
+    item.delete()
+    return redirect('dashboard:index')
 
 
