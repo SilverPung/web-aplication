@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include('core.urls')),#podaplikacja core gdzie odsyłamy do pliku urls.py z core
     path('items/', include('item.urls')), #podaplikacja items gdzie odsyłamy do pliku urls.py z item
     path('dashboard/', include('dashboard.urls')), #podaplikacja dashboard gdzie odsyłamy do pliku urls.py z dashboard
+    path('inbox/', include('conversation.urls')), #podaplikacja conversation gdzie odsyłamy do pliku urls.py z conversation
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #nie robić tego w produkcji

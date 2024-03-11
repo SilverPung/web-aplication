@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core', # Add the core app to the list of installed apps
     'dashboard',  # Add the dashboard app to the list of installed apps
-    'item'  # Add the item app to the list of installed apps
+    'item',  # Add the item app to the list of installed apps
+    'conversation'  # Add the conversation app to the list of installed apps
     
 ]
 
