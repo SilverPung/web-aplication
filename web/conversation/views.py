@@ -9,15 +9,13 @@ from django.db.models import Q
 @login_required
 def new_conversations(request,item_pk):
     item=get_object_or_404(Item,pk=item_pk)
-    
-    
     if item.created_by==request.user:
        return redirect('item:detail',pk=item_pk)
 
     conversations = Conversation.objects.filter(item=item, members__in=[request.user.id])
 
     if conversations:
-        pass
+        return redirect('conversation:detail', conversation_pk=conversations[0].pk)
     
     if request.method == 'POST':
         form = NewConversationForm(request.POST)
@@ -31,9 +29,33 @@ def new_conversations(request,item_pk):
             conversation_massage.conversation=conversation
             conversation_massage.created_by=request.user
             conversation_massage.save()
-
             return redirect('item:detail',pk=item_pk)
     else:
         form=NewConversationForm()
 
     return render(request, 'conversation/new.html', {'form':form})
+
+@login_required
+def inbox(request):
+    conversations = Conversation.objects.filter(members__in=[request.user.id])
+    return render(request, 'conversation/inbox.html', {'conversations':conversations})
+
+@login_required
+def detail(request, conversation_pk):
+    conversation=Conversation.objects.filter(members__in=[request.user.id]).get(pk=conversation_pk)
+    
+    if request.method == 'POST':
+        form=NewConversationForm(request.POST)
+        if form.is_valid():
+            conversation_massage=form.save(commit=False)
+            conversation_massage.conversation=conversation
+            conversation_massage.created_by=request.user
+            conversation_massage.save()
+
+            conversation.save()
+            return redirect('conversation:detail',conversation_pk=conversation_pk)
+        
+    else:
+        form=NewConversationForm()
+
+    return render(request, 'conversation/detail.html', {'conversation':conversation, 'form':form})

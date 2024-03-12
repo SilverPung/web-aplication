@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Conversation
+{% endblock %}
+    
+
+{%block content %}
+    <div class="space-y-6">
+        
+        {% for message in conversation.messages.all %}
+                
+                    {% if message.created_by == request.user %}
+                        <div class="flex p-6 flex bg-blue-200 rounded-xl">
+                    {% else %}
+                        <div class="flex p-6 flex bg-gray-200 rounded-xl">
+                    {% endif %}
+                    <div>
+                        <p class="mb-4"><strong>{{ message.created_by.username|capfirst}}</strong> | {{ message.created_at}}</p>
+                        <p>{{ message.content }}</p>
+                            
+                    </div>
+                </div>
+            </a>
+            
+        {% endfor %}
+            
+    </div class="space-y-4 py-4">
+
+    <form method="post" action=".">
+        {% csrf_token %}
+        <div class="space-y-4">
+            {{form.as_p}}
+        </div>
+        {% if form.errors or form.non_field_errors %} <!-- Jeśli są błędy formularza -->
+                <div class="bg-red-100 p-6 mb-3 rounded-xl text-left"> <!-- Kontener dla błędów -->
+                    <ul> <!-- Lista błędów -->
+                        <br>
+                        {% for error in form.errors %} <!-- Pętla przez błędy -->
+                            <li>{{error}}</li> <!-- Wyświetla błąd -->
+                        {% endfor %}
+                    </ul>
+                </div>
+        {% endif %}
+        <button class="mt-6 py-4 px-8 text-lg rounded-xl bg-teal-500 hover:bg-teal-700 text-white">Send</button> <!-- Przycisk zapisu -->
+    </form>
+</div>
+{% endblock  %}
+```
