@@ -21,14 +21,25 @@ def category(request,pk):#funkcja odpowiadająca za wyświetlanie strony z przed
 
 
 def browse(request):#funkcja odpowiadająca za wyświetlanie strony z wszystkimi przedmiotami
+    
     query=request.GET.get('query','')#pobranie zapytania z adresu url
     category_id=request.GET.get('category',0)#pobranie id kategorii z adresu url
+    max_price=request.GET.get('max_price','')#pobranie maksymalnej ceny z adresu url
+    min_price=request.GET.get('min_price','')#pobranie minimalnej ceny z adresu url
     items=Item.objects.filter(is_sold=False)#pobranie przedmiotów z bazy danych
+    
     categories=Category.objects.all()#pobranie kategorii z bazy danych
-    if category_id:
+    if int(category_id) != 0:
         items=items.filter(category_id=category_id)
     if query:
         items=items.filter(Q(name__icontains=query)|Q(description__icontains=query))
+    if max_price or min_price:
+        if max_price and min_price:
+            items=items.filter(price__range=(min_price,max_price))
+        elif max_price:
+            items=items.filter(price__lte=max_price)
+        elif min_price:
+            items=items.filter(price__gte=min_price)
     return render(request, 'item/browse.html', {'items': items,'categories':categories,'query':query,'category_id':int(category_id)})#wyświetlenie strony z przedmiotami
 
 

@@ -7,6 +7,9 @@
         <div class="col-span-1 mt-6 px-6 py-12 bg-gray-200 rounded-xl"> <!--side bar -->
             
             <form method="get" action="{% url 'item:browse' %}">
+                <input name="category" type="hidden" value="{{category_id}}">
+                <input name="min_price" type="hidden" value="{{min_price}}">
+                <input name="max_price" type="hidden" value="{{max_price}}">
                 <input name="query" class="w-full px-6 py-4 mb-4 border border-gray-300 rounded-lg" type="text" placeholder="Search for items" value="{{query}}"> <!-- Pole wyszukiwania -->
                 <button class="mt-2 px-8 py-4 bg-teal-500 text-white rounded-xl inline-block">Search</button> <!-- Przycisk wyszukiwania -->
             </form>
@@ -24,16 +27,23 @@
             </ul>
 
             <hr class="my-6 border-t-2 border-gray-300"> <!-- Linia oddzielająca -->
-
-            <p class="text-xl font-semibold">Categories</p> <!-- Nagłówek kategorii -->
+            <p class="text-xl font-semibold">Price Range</p> <!-- Nagłówek zakresu cen -->
+            <br>
+            <form method="get" action="{% url 'item:browse' %}">
+                <input name="query" type="hidden" value="{{query}}">
+                <input name="category" type="hidden" value="{{category_id}}">
+                <input name="min_price" class="w-full px-6 py-4 mb-4 border border-gray-300 rounded-lg" type="number" placeholder="Min Price" value="{{min_price}}" min="0"> <!-- Pole na minimalną cenę -->
+                <input name="max_price" class="w-full px-6 py-4 mb-4 border border-gray-300 rounded-lg" type="number" placeholder="Max Price" value="{{max_price}}" min="0"> <!-- Pole na maksymalną cenę -->
+                <button class="mt-2 px-8 py-4 bg-teal-500 text-white rounded-xl inline-block">Filter</button> <!-- Przycisk filtrowania -->
+            </form>
+            <hr class="my-6 border-t-2 border-gray-300"> <!-- Linia oddzielająca -->
+            <p class="text-xl font-semibold">Clear</p> <!-- Nagłówek kategorii -->
             <br>
             <ul>
                 <li><a href="{% url 'item:browse' %}" class="mt-2 mb-4 px-8 py-4 bg-teal-500 text-white rounded-xl inline-block">Clear Filters</a></li>
             </ul>
         
         </div>
-        
-        
         
         
         
